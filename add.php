@@ -99,9 +99,9 @@
                 echo $fileToUpload;
                 echo "<br />";
                 
-                // $content = fopen($fileToUpload, "r");
+                $content = fopen($fileToUpload, "r");
                 
-                $content = fopen($_FILES["foto"]["tmp_name"], "r");
+                // $content = fopen($_FILES["foto"]["tmp_name"], "r");
         
                 //Upload blob
                 $blobClient->createBlockBlob($containerName, $fileToUpload, $content);
@@ -173,7 +173,7 @@
                         <h3>Create a Customer</h3>
                     </div>
              
-                    <form class="form-horizontal" action="add.php" method="post" enctype="multipart/form-data">
+                    <form class="form-horizontal" action="add.php" method="post">
                         <div class="control-group <?php echo !empty($namaError)?'error':'';?>">
                             <label class="control-label">Nama</label>
                             <div class="controls">
