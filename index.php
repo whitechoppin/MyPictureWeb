@@ -20,6 +20,7 @@
                         <tr>
                             <th>No</th>
                             <th>Name</th>
+                            <th>Blob</th>
                             <th>Tools</th>
                         </tr>
                     </thead>
@@ -46,6 +47,7 @@
                             echo '<tr>';
                             echo '<td>'. $row['id'] . '</td>';
                             echo '<td><a class="" href="show.php?id='.$row['id'].'">'. $row['nama'] . '</a></td>';
+                            echo '<td>'. $row['alamat'] .'</td>';
                             echo '<td width=250>';
                             echo '<a class="btn btn-danger" href="delete.php?id='.$row['id'].'">Delete</a>';
                             echo '</td>';
