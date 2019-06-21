@@ -172,6 +172,15 @@
                                 <?php endif; ?>
                             </div>
                         </div>
+                        <div class="control-group">
+                            <label class="control-label">Foto</label>
+                            <div class="controls">
+                                <input name="foto" type="file"  placeholder="foto">
+                                <!-- <?php if (!empty($namaError)): ?>
+                                    <span class="help-inline"><?php echo $namaError;?></span>
+                                <?php endif; ?> -->
+                            </div>
+                        </div>
                         <div class="form-actions">
                             <button type="submit" class="btn btn-success">Create</button>
                             <a class="btn" href="index.php">Back</a>
