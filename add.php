@@ -56,7 +56,9 @@
  
     if ( !empty($_POST)) {
         $namaError = null;
+        $fotoError = null;
         $nama = $_POST['nama'];
+        $foto = $_POST['foto'];
          
         // validasi inputan
         $valid = true;
@@ -64,9 +66,15 @@
             $namaError = 'Tolong isi nama';
             $valid = false;
         }
+
+        if (empty($foto)) {
+            $fotoError = 'Tolong isi foto';
+            $valid = false;
+        }
          
         // isi data
         if ($valid) {
+            $fileToUpload = $foto;
 
             // Create container options object.
             $createContainerOptions = new CreateContainerOptions();
@@ -97,7 +105,7 @@
         
                 // List blobs.
                 $listBlobsOptions = new ListBlobsOptions();
-                $listBlobsOptions->setPrefix("HelloWorld");
+                $listBlobsOptions->setPrefix("MyPictureWeb");
         
                 echo "These are the blobs present in the container: ";
         
@@ -172,13 +180,13 @@
                                 <?php endif; ?>
                             </div>
                         </div>
-                        <div class="control-group">
+                        <div class="control-group <?php echo !empty($fotoError)?'error':'';?>">
                             <label class="control-label">Foto</label>
                             <div class="controls">
                                 <input name="foto" type="file"  placeholder="foto">
-                                <!-- <?php if (!empty($namaError)): ?>
-                                    <span class="help-inline"><?php echo $namaError;?></span>
-                                <?php endif; ?> -->
+                                <?php if (!empty($fotoError)): ?>
+                                    <span class="help-inline"><?php echo $fotoError;?></span>
+                                <?php endif; ?>
                             </div>
                         </div>
                         <div class="form-actions">
