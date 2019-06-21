@@ -106,7 +106,7 @@ else if (isset($_GET["Cleanup"]))
     }
 }
 ?>
-<form method="post" action="index.php?Upload">
+<form method="post" action="add.php?Upload">
     <button type="submit">Upload Data</button>
 </form>
 
