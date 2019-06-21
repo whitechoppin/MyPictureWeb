@@ -1,0 +1,14 @@
+- pertama download dulu file nya di git hub
+1.https://github.com/Azure/azure-storage-php.
+2.https://github.com/Azure-Samples/storage-blobs-php-quickstart. 
+- kemudian download composer.exe ini ada link sekaligus tutorial.
+1.https://www.petanikode.com/php-composer/
+- bikin folder baru dulu trus isi azure-storege-php file didalamnya
+- ganti composer json require sesuai yang berada dalam read.me
+- jangan lupa path php di enviroment supaya bisa ketik perintah php di cmd
+- copi paste storage-blobs-php-quickstart file nya kedalam folder yang berisi file azure-storege-php
+- melalui cmd akses masuk ke dalam file tersebut.
+- run "php composer.phar install" dalam folder baru tadi yang berisi file azure-storege-php. sampai selesai !!
+- ganti connection string di file phpQs.php dan save.
+- lalu nyalakan di browser. 
+
