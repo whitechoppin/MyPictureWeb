@@ -31,22 +31,22 @@
 <html lang="en">
 <?php
      
-     require_once 'vendor/autoload.php';
-     require_once "./random_string.php";
-     
-     use MicrosoftAzure\Storage\Blob\BlobRestProxy;
-     use MicrosoftAzure\Storage\Common\Exceptions\ServiceException;
-     use MicrosoftAzure\Storage\Blob\Models\ListBlobsOptions;
-     use MicrosoftAzure\Storage\Blob\Models\CreateContainerOptions;
-     use MicrosoftAzure\Storage\Blob\Models\PublicAccessType;
-     
-     $connectionString = "DefaultEndpointsProtocol=https;AccountName=mypictureweb;AccountKey=yJlewTq7A4Y60BbeaTPjFAwGVeXqLjcuHm5qZKwPuQdPWjyRichNf2aAXtyBKynGOygCOlFdrnOG+Ka8HmlPkA==;EndpointSuffix=core.windows.net";
-     // Create blob client.
-     $blobClient = BlobRestProxy::createBlobService($connectionString);
-     
-     $fileToUpload = "elis.jpg";
+    require_once 'vendor/autoload.php';
+    require_once "./random_string.php";
+    
+    use MicrosoftAzure\Storage\Blob\BlobRestProxy;
+    use MicrosoftAzure\Storage\Common\Exceptions\ServiceException;
+    use MicrosoftAzure\Storage\Blob\Models\ListBlobsOptions;
+    use MicrosoftAzure\Storage\Blob\Models\CreateContainerOptions;
+    use MicrosoftAzure\Storage\Blob\Models\PublicAccessType;
+    
+    $connectionString = "DefaultEndpointsProtocol=https;AccountName=mypictureweb;AccountKey=yJlewTq7A4Y60BbeaTPjFAwGVeXqLjcuHm5qZKwPuQdPWjyRichNf2aAXtyBKynGOygCOlFdrnOG+Ka8HmlPkA==;EndpointSuffix=core.windows.net";
+    // Create blob client.
+    $blobClient = BlobRestProxy::createBlobService($connectionString);
+    
+    $fileToUpload = "elis.jpg";
 
-     $serverName = "tcp:mypictureweb.database.windows.net,1433";
+    $serverName = "tcp:mypictureweb.database.windows.net,1433";
     $connectionOptions = array(
         "Database" => "mypictureweb", // update me
         "Uid" => "alexwibowo", // update me
@@ -74,7 +74,8 @@
          
         // isi data
         if ($valid) {
-            $fileToUpload = $foto;
+
+            $fileToUpload = $_FILES["foto"]["name"];
 
             // Create container options object.
             $createContainerOptions = new CreateContainerOptions();
@@ -90,7 +91,7 @@
                 $blobClient->createContainer($containerName, $createContainerOptions);
         
                 // Getting local file so that we can upload it to Azure
-                $myfile = fopen($fileToUpload, "r") or die("Unable to open file!");
+                $myfile = fopen($fileToUpload, "r") or die("Unable to open file! ");
                 fclose($myfile);
                 
                 # Upload file as a block blob
@@ -98,7 +99,9 @@
                 echo $fileToUpload;
                 echo "<br />";
                 
-                $content = fopen($fileToUpload, "r");
+                // $content = fopen($fileToUpload, "r");
+                
+                $content = fopen($_FILES["foto"]["tmp_name"], "r");
         
                 //Upload blob
                 $blobClient->createBlockBlob($containerName, $fileToUpload, $content);
@@ -183,7 +186,7 @@
                         <div class="control-group <?php echo !empty($fotoError)?'error':'';?>">
                             <label class="control-label">Foto</label>
                             <div class="controls">
-                                <input name="foto" type="file"  placeholder="foto" accept="photo/*">
+                                <input name="foto" type="file"  placeholder="foto" accept=".jpeg,.jpg,.png">
                                 <?php if (!empty($fotoError)): ?>
                                     <span class="help-inline"><?php echo $fotoError;?></span>
                                 <?php endif; ?>
