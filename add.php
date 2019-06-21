@@ -102,7 +102,7 @@
                 // $content = fopen($fileToUpload, "r");
                 
                 // $content = fopen($_FILES["foto"]["tmp_name"], "r");
-                $content = file_get_contents($_FILES['gambar']['tmp_name']);
+                $content = file_get_contents($_FILES['foto']['tmp_name']);
         
                 //Upload blob
                 $blobClient->createBlockBlob($containerName, $fileToUpload, $content);
