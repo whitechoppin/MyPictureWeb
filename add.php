@@ -46,13 +46,13 @@
      
      $fileToUpload = "elis.jpg";
 
-     $serverName = "tcp:mygamesweb.database.windows.net,1433";
-     $connectionOptions = array(
-         "Database" => "permainan", // update me
-         "Uid" => "alexwibowo", // update me
-         "PWD" => "08Maret2017" // update me
-     ); 
-     $conn = sqlsrv_connect($serverName, $connectionOptions);  
+     $serverName = "tcp:mypictureweb.database.windows.net,1433";
+    $connectionOptions = array(
+        "Database" => "mypictureweb", // update me
+        "Uid" => "alexwibowo", // update me
+        "PWD" => "08Maret2017" // update me
+    ); 
+    $conn = sqlsrv_connect($serverName, $connectionOptions);  
  
     if ( !empty($_POST)) {
         $namaError = null;
@@ -68,7 +68,6 @@
         // isi data
         if ($valid) {
 
-            //
             // Create container options object.
             $createContainerOptions = new CreateContainerOptions();
             $createContainerOptions->setPublicAccess(PublicAccessType::CONTAINER_AND_BLOBS);
