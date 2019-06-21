@@ -183,7 +183,7 @@
                         <div class="control-group <?php echo !empty($fotoError)?'error':'';?>">
                             <label class="control-label">Foto</label>
                             <div class="controls">
-                                <input name="foto" type="file"  placeholder="foto">
+                                <input name="foto" type="file"  placeholder="foto" accept="photo/*">
                                 <?php if (!empty($fotoError)): ?>
                                     <span class="help-inline"><?php echo $fotoError;?></span>
                                 <?php endif; ?>
