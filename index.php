@@ -13,7 +13,7 @@
             </div>
             <div class="row table-responsive">
                 <p>
-                    <a href="create.php" class="btn btn-success">Create</a>
+                    <a href="add.php" class="btn btn-success">Create</a>
                 </p>
                 <table class="table table-condensed">
                     <thead>
