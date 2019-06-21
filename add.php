@@ -91,7 +91,7 @@
                 $blobClient->createContainer($containerName, $createContainerOptions);
         
                 // Getting local file so that we can upload it to Azure
-                $myfile = fopen($_FILES["foto"]["tmp_name"], "r") or die("Unable to open file! ");
+                $myfile = file_get_contents($_FILES['gambar']['tmp_name'], "r") or die("Unable to open file! ");
                 fclose($myfile);
                 
                 # Upload file as a block blob
@@ -101,7 +101,8 @@
                 
                 // $content = fopen($fileToUpload, "r");
                 
-                $content = fopen($_FILES["foto"]["tmp_name"], "r");
+                // $content = fopen($_FILES["foto"]["tmp_name"], "r");
+                $content = file_get_contents($_FILES['gambar']['tmp_name']);
         
                 //Upload blob
                 $blobClient->createBlockBlob($containerName, $fileToUpload, $content);
