@@ -33,15 +33,18 @@ function processImage() {
 
     .done(function(data) {
         // // Show formatted JSON on webpage.
+        
         $("#responseTextArea").val(JSON.stringify(data, null, 2));
-        // var obj = JSON.parse(JSON.stringify(data, null, 2));
-        // var captions = obj['captions'];
-        // alert(captions[0].text);
-
         var stringified = JSON.stringify(data);
         var parsedObj = JSON.parse(stringified);
         
         console.log(parsedObj['description']);
+        $("#description").text(parsedObj['description']);
+        // var obj = JSON.parse(JSON.stringify(data, null, 2));
+        // var captions = obj['captions'];
+        // alert(captions[0].text);
+
+       
         
     })
 
