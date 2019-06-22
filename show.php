@@ -41,6 +41,7 @@
             <div class="control-group">
                 <input type="text" name="inputImage" id="inputImage"
                     value= "https://mypictureweb.blob.core.windows.net/<?php echo $data['alamat'];?>" />
+                <strong>Description Picture : </strong>
                 <label id="description"></label>
             </div>
             <div class="control-group">
