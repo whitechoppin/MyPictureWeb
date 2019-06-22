@@ -48,7 +48,7 @@ function processImage() {
 
     .done(function(data) {
         // // Show formatted JSON on webpage.
-        var datanow = JSON.parse(data);
+        var datanow = JSON.parse(data, null, 2);
         alert(datanow.captions[0].text)
         $("#responseTextArea").val(JSON.stringify(data, null, 2));
     })
