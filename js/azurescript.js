@@ -50,7 +50,8 @@ function processImage() {
         // Show formatted JSON on webpage.
         var datanow = JSON.stringify(data, null, 2);
         var captionnow = JSON.parse(datanow);
-        $("#responseTextArea").val(captionnow);
+        alert(captionnow.captions[0].name)
+        $("#responseTextArea").val(JSON.stringify(data, null, 2));
     })
 
     .fail(function(jqXHR, textStatus, errorThrown) {
