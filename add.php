@@ -175,7 +175,7 @@
                         <h3>Create a Customer</h3>
                     </div>
              
-                    <form class="form-horizontal" action="add.php" method="post">
+                    <form class="form-horizontal" action="add.php" method="post" enctype="multipart/form-data">
                         <div class="control-group <?php echo !empty($namaError)?'error':'';?>">
                             <label class="control-label">Nama</label>
                             <div class="controls">
