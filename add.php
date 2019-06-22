@@ -56,9 +56,9 @@
  
     if ( !empty($_POST)) {
         $namaError = null;
-        $fotoError = null;
+        // $fotoError = null;
         $nama = $_POST['nama'];
-        $foto = $_POST['foto'];
+        // $foto = $_POST['foto'];
          
         // validasi inputan
         $valid = true;
@@ -67,10 +67,10 @@
             $valid = false;
         }
 
-        if (empty($foto)) {
-            $fotoError = 'Tolong isi foto';
-            $valid = false;
-        }
+        // if (empty($foto)) {
+        //     $fotoError = 'Tolong isi foto';
+        //     $valid = false;
+        // }
          
         // isi data
         if ($valid) {
@@ -185,13 +185,10 @@
                                 <?php endif; ?>
                             </div>
                         </div>
-                        <div class="control-group <?php echo !empty($fotoError)?'error':'';?>">
+                        <div class="control-group">
                             <label class="control-label">Foto</label>
                             <div class="controls">
-                                <input name="foto" type="file"  placeholder="foto" accept=".jpeg,.jpg,.png">
-                                <?php if (!empty($fotoError)): ?>
-                                    <span class="help-inline"><?php echo $fotoError;?></span>
-                                <?php endif; ?>
+                                <input name="foto" id="foto" type="file"  placeholder="foto" accept=".jpeg,.jpg,.png">
                             </div>
                         </div>
                         <div class="form-actions">
