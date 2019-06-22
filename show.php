@@ -38,9 +38,10 @@
             $conn = null;  
         ?>
         <div class="row">
-            <input type="text" name="inputImage" id="inputImage"
-                value= "https://mypictureweb.blob.core.windows.net/<?php echo $data['alamat'];?>" />
-            <button>Analyze image</button>
+            <div class="control-group">
+                <input type="text" name="inputImage" id="inputImage"
+                    value= "https://mypictureweb.blob.core.windows.net/<?php echo $data['alamat'];?>" />
+            </div>
         </div>
         <div id="wrapper" style="width:1020px; display:table;">
             <div id="jsonOutput" style="width:600px; display:table-cell;">
