@@ -52,7 +52,7 @@ function processImage() {
         var json = JSON.stringify(data, null, 2),
         obj = JSON.parse(json);
 
-        alert(json.captions[0].text);
+        alert(obj.captions[0].text);
         
     })
 
