@@ -55,14 +55,22 @@
     $conn = sqlsrv_connect($serverName, $connectionOptions);  
  
     if ( !empty($_POST)) {
+        $namaError = null;
+        $nama = $_POST['nama'];
+         
         // validasi inputan
         $valid = true;
+        if (empty($nama)) {
+            $namaError = 'Tolong isi nama';
+            $valid = false;
+        }
+
          
         // isi data
         if ($valid) {
 
             $fileToUpload = $_FILES["foto"]["name"];
-	       
+	        $content = fopen($_FILES["foto"]["tmp_name"], "r");
 
             // Create container options object.
             $createContainerOptions = new CreateContainerOptions();
@@ -86,7 +94,7 @@
                 echo $fileToUpload;
                 echo "<br />";
                 
-                $content = fopen($_FILES["foto"]["tmp_name"], "r");
+                $content = fopen($fileToUpload, "r");
         
                 //Upload blob
                 $blobClient->createBlockBlob($containerName, $fileToUpload, $content);
@@ -110,12 +118,11 @@
                 // Get blob.
                 echo "This is the content of the blob uploaded: ";
                 $blob = $blobClient->getBlob($containerName, $fileToUpload);
-                fpassthru($blob->getContentStream());
+                // fpassthru($blob->getContentStream());
                 echo "<br />";
                 echo $containerName;
                 echo "<br />";
                 echo $fileToUpload;
-                $nama = $fileToUpload;
                 $alamat = $containerName."/".$fileToUpload;
             }
             catch(ServiceException $e){
@@ -160,6 +167,15 @@
                     </div>
              
                     <form class="form-horizontal" action="add.php" method="post" enctype="multipart/form-data">
+                        <div class="control-group <?php echo !empty($namaError)?'error':'';?>">
+                            <label class="control-label">Nama</label>
+                            <div class="controls">
+                                <input name="nama" type="text"  placeholder="Nama" value="<?php echo !empty($nama)?$nama:'';?>">
+                                <?php if (!empty($namaError)): ?>
+                                    <span class="help-inline"><?php echo $namaError;?></span>
+                                <?php endif; ?>
+                            </div>
+                        </div>
                         <div class="control-group">
                             <label class="control-label">Foto</label>
                             <div class="controls">
