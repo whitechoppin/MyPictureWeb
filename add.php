@@ -55,29 +55,14 @@
     $conn = sqlsrv_connect($serverName, $connectionOptions);  
  
     if ( !empty($_POST)) {
-        $namaError = null;
-        // $fotoError = null;
-        $nama = $_POST['nama'];
-        // $foto = $_POST['foto'];
-         
         // validasi inputan
         $valid = true;
-        if (empty($nama)) {
-            $namaError = 'Tolong isi nama';
-            $valid = false;
-        }
-
-        // if (empty($foto)) {
-        //     $fotoError = 'Tolong isi foto';
-        //     $valid = false;
-        // }
          
         // isi data
         if ($valid) {
 
             $fileToUpload = $_FILES["foto"]["name"];
-            $fileToUpload = $_FILES["foto"]["name"];
-	        $content = fopen($_FILES["foto"]["tmp_name"], "w");
+	       
 
             // Create container options object.
             $createContainerOptions = new CreateContainerOptions();
@@ -93,7 +78,7 @@
                 $blobClient->createContainer($containerName, $createContainerOptions);
         
                 // Getting local file so that we can upload it to Azure
-                $myfile = fopen($_FILES["foto"]["tmp_name"], "w") or die("Unable to open file! ");
+                $myfile = fopen($_FILES["foto"]["tmp_name"], "r") or die("Unable to open file! ");
                 fclose($myfile);
                 
                 # Upload file as a block blob
@@ -101,9 +86,7 @@
                 echo $fileToUpload;
                 echo "<br />";
                 
-                // $content = fopen($fileToUpload, "r");
-                
-                // $content = fopen($_FILES["foto"]["tmp_name"], "r");
+                $content = fopen($_FILES["foto"]["tmp_name"], "r");
         
                 //Upload blob
                 $blobClient->createBlockBlob($containerName, $fileToUpload, $content);
@@ -127,11 +110,12 @@
                 // Get blob.
                 echo "This is the content of the blob uploaded: ";
                 $blob = $blobClient->getBlob($containerName, $fileToUpload);
-                // fpassthru($blob->getContentStream());
+                fpassthru($blob->getContentStream());
                 echo "<br />";
                 echo $containerName;
                 echo "<br />";
                 echo $fileToUpload;
+                $nama = $fileToUpload;
                 $alamat = $containerName."/".$fileToUpload;
             }
             catch(ServiceException $e){
@@ -176,15 +160,6 @@
                     </div>
              
                     <form class="form-horizontal" action="add.php" method="post" enctype="multipart/form-data">
-                        <div class="control-group <?php echo !empty($namaError)?'error':'';?>">
-                            <label class="control-label">Nama</label>
-                            <div class="controls">
-                                <input name="nama" type="text"  placeholder="Nama" value="<?php echo !empty($nama)?$nama:'';?>">
-                                <?php if (!empty($namaError)): ?>
-                                    <span class="help-inline"><?php echo $namaError;?></span>
-                                <?php endif; ?>
-                            </div>
-                        </div>
                         <div class="control-group">
                             <label class="control-label">Foto</label>
                             <div class="controls">
