@@ -42,6 +42,9 @@
                 <input type="text" name="inputImage" id="inputImage"
                     value= "https://mypictureweb.blob.core.windows.net/<?php echo $data['alamat'];?>" />
             </div>
+            <div class="control-group">
+                <a class="btn" href="index.php">Back</a>
+            </div>
         </div>
         <div id="wrapper" style="width:1020px; display:table;">
             <div id="jsonOutput" style="width:600px; display:table-cell;">
