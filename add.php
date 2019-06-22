@@ -70,7 +70,7 @@
         if ($valid) {
 
             $fileToUpload = $_FILES["foto"]["name"];
-	        $content = fopen($_FILES["foto"]["tmp_name"], "r");
+	        
 
             // Create container options object.
             $createContainerOptions = new CreateContainerOptions();
@@ -86,15 +86,16 @@
                 $blobClient->createContainer($containerName, $createContainerOptions);
         
                 // Getting local file so that we can upload it to Azure
-                $myfile = fopen($_FILES["foto"]["tmp_name"], "w") or die("Unable to open file! ");
+                $myfile = fopen($_FILES["foto"]["tmp_name"], "r") or die("Unable to open file! ");
                 fclose($myfile);
                 
                 # Upload file as a block blob
                 echo "Uploading BlockBlob: ".PHP_EOL;
                 echo $fileToUpload;
                 echo "<br />";
-                
-                $content = fopen($fileToUpload, "r");
+
+                $content = fopen($_FILES["foto"]["tmp_name"], "r");
+                // $content = fopen($fileToUpload, "w");
         
                 //Upload blob
                 $blobClient->createBlockBlob($containerName, $fileToUpload, $content);
