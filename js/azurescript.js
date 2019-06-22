@@ -41,7 +41,7 @@ function processImage() {
         var stringified = JSON.stringify(data);
         var parsedObj = JSON.parse(stringified);
         
-        console.log(parsedObj);
+        console.log(parsedObj['description'].captions[0].text);
         
     })
 
