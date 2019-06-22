@@ -8,7 +8,7 @@ use MicrosoftAzure\Storage\Blob\Models\CreateContainerOptions;
 use MicrosoftAzure\Storage\Blob\Models\PublicAccessType;
 $connectionString = "DefaultEndpointsProtocol=https;AccountName=mypictureweb;AccountKey=yJlewTq7A4Y60BbeaTPjFAwGVeXqLjcuHm5qZKwPuQdPWjyRichNf2aAXtyBKynGOygCOlFdrnOG+Ka8HmlPkA==;EndpointSuffix=core.windows.net";
 $blobClient = BlobRestProxy::createBlobService($connectionString);
-$containerName = "subs2reza";
+$containerName = "blockblobs".generateRandomString();
 	
 if (isset($_POST['submit'])) {
 	$fileToUpload = $_FILES["fileToUpload"]["name"];
@@ -37,33 +37,27 @@ $result = $blobClient->listBlobs($containerName, $listBlobsOptions);
 		<link href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css" rel="stylesheet">
 		<!-- Custom styles for this template -->
 		<link href="starter-template.css" rel="stylesheet">
-		 <style>
-       th {
-  	background-color:#707B7C; border-right:solid 1px black; border-bottom:solid 1px black; font-size:8pt ; padding:5px;font-family: arial;border-top: solid 1px black;border-left: solid 1px black;
-	} 
-	td{
-		border-right:solid 1px black; border-bottom:solid 1px black; font-size:8pt ; padding:5px;font-family: arial;border-left: solid 1px black;border-top: solid 1px black; text-align: right;  
-	}
-</style>
+        <style>
+            th {
+            background-color:#707B7C; border-right:solid 1px black; border-bottom:solid 1px black; font-size:8pt ; padding:5px;font-family: arial;border-top: solid 1px black;border-left: solid 1px black;
+            } 
+            td{
+                border-right:solid 1px black; border-bottom:solid 1px black; font-size:8pt ; padding:5px;font-family: arial;border-left: solid 1px black;border-top: solid 1px black; text-align: right;  
+            }
+        </style>
 	</head>
-	
 	<body>
 
-			Image to analyze:
-					<form action="upload_foto.php" method="post" enctype="multipart/form-data">
-						<input type="file" name="fileToUpload" accept=".jpeg,.jpg,.png" required="">
-						<input type="submit" name="submit" value="Upload">
-					</form>
-			
-				<br>
-			
-				</div>
-			
-			<!-- Placed at the end of the document so the pages load faster -->
-			<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-			<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-			<script src="https://getbootstrap.com/docs/4.0/assets/js/vendor/popper.min.js"></script>
-			<script src="https://getbootstrap.com/docs/4.0/dist/js/bootstrap.min.js"></script>
-			
-			</body>
-		</html>
+        Image to analyze:
+        <form action="add2.php" method="post" enctype="multipart/form-data">
+            <input type="file" name="fileToUpload" accept=".jpeg,.jpg,.png" required="">
+            <input type="submit" name="submit" value="Upload">
+        </form>
+        <br/>
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+        <script src="https://getbootstrap.com/docs/4.0/assets/js/vendor/popper.min.js"></script>
+        <script src="https://getbootstrap.com/docs/4.0/dist/js/bootstrap.min.js"></script>
+    </body>
+</html>
