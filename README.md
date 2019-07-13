@@ -1,7 +1,7 @@
 ---
-services: storage
+Website : CRUD Sql Server and Save Picture On Blob Container Azure
 platforms: php
-author: roygara
+author: Alex Pratama Wibowo
 ---
 
 # Transfer objects to and from Azure Blob storage using PHP
